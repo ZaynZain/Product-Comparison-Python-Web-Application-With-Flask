@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Laptops</title>
+    <!-- Include Bootstrap CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .col-md-3 {
+            margin-bottom: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+   <div class="container-fluid">
+    <h1 class="text-center mb-4">Amazon Laptops Information</h1>
+    <div class="row">
+        {% for laptop in amzon_laptops %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ laptop['photo-src'] }}" class="card-img-top" alt="Laptop Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ laptop['productname'] }}</h5>
+                        <p class="card-text">Price: {{ laptop['price'] }}</p>
+                        <p class="card-text">Discount: {{ laptop['discount'] }}</p>
+                        <a href="{{ laptop['laptops-href'] }}" target="_blank" class="btn btn-primary">View Product</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <a href="/upload">Upload File</a>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mt-4 mb-4">Admin Panel</h2>
+
+        <!-- File Upload Form -->
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload File:</label>
+                <!-- <input type="file" class="form-control" id="file" name="file" required> -->
+                <input type="file" name="file" accept=".csv" class="form-control" id="file" required>
+
+                <!-- <a href="/upload">Upload File</a> -->
+            </div>
+            <button type="submit" class="btn btn-primary">Upload File</button>
+        </form>
+
+        <!-- File Delete Form -->
+       <form action="#" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="deleteFile">Delete File:</label>
+            <select class="form-control" id="deleteFile" name="deleteFile" required>
+                {% for table_name in table_names %}
+                    <option value="{{ table_name }}">{{ table_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-danger">Delete File</button>
+    </form>
+
+        <!-- Website Selection and URL Scraping Form -->
+        <form action="#" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="website">Select Website:</label>
+                <select class="form-control" id="website" name="website" required>
+                    <option value="website1">Website 1</option>
+                    <option value="website2">Website 2</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="url">Enter URL:</label>
+                <input type="text" class="form-control" id="url" name="url" required>
+            </div>
+            <button type="submit" class="btn btn-success">Scrape URL</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-w6xUVtW8WO2G6UI5nUAtrex36U+8S8bNTee6S+7pydL3uOJtfxFSSn57pgnyEx9N"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

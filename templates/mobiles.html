@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- <h2>demo</h2> -->
+
+{% for row in data  %}
+ <p>{{ row[0] }}</p>
+<br>
+ <p>{{ row[1] }}</p>
+
+ <!-- <img src="row[]"> -->
+
+
+    {% endfor %}
+
+
+<div class="pagination">
+    {% if page > 1 %}
+       <button  type="button" class="btn btn-dark"> <a href="{{ url_for('mobiles', page=page-1) }}" style="color: white;">Previous</a></button>
+    {% endif %}
+    <span>page {{page}} of {{total_pages}}</span>
+
+    {% if page < total_pages %}
+       <button  type="button" class="btn btn-dark"> <a href="{{ url_for('mobiles', page=page+1) }}" style="color: white;">Next</a></button>
+    {% endif %}
+</div>
+<br>
+
+    </div>
+<script>
+    function toggleDataVisibility() {
+        var productList = document.getElementById("product-list");
+        if (productList.style.display === "none") {
+            productList.style.display = "block";
+        } else {
+            productList.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

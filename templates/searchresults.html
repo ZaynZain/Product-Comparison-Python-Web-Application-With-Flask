@@ -1,0 +1,121 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+<style>
+    /* CSS to truncate text with ellipsis */
+    .truncate-text {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 100%; /* Ensure the text doesn't overflow the container */
+    }
+
+    /* CSS to display full text on hover */
+    .truncate-text:hover {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        z-index: 9999; /* Ensure the text appears on top of other elements */
+        position: absolute; /* Adjust the positioning as needed */
+        background-color: #fff; /* Optional: Add a background color for better readability */
+        padding: 10px; /* Optional: Add padding for better appearance */
+    }
+
+    /* Add a hover effect to the card */
+    .card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Remove border and box-shadow by default */
+    .card {
+        border: none;
+        box-shadow: none;
+        transition: transform 0.3s ease;
+    }
+
+    /* Add a hover effect to the card */
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .btn:hover {
+  animation-name: tada;
+  animation-duration: 1s;
+}
+</style>
+
+<div class="container">
+    <div class="row">
+        <!-- Filter Options on the left side -->
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Filter Options</h5>
+                    <!-- Additional heading fields -->
+                    <form>
+                         <div class="mb-3">
+                            <label for="brand">Brand:</label>
+                            <select class="form-select" id="brand">
+                                <option selected>All Brands</option>
+                                <option value="1">Apple</option>
+                                <option value="2">HP</option>
+                                <option value="3">Lenevo</option>
+                                <option value="4">Acer</option>
+                                <option value="5">Samsung</option>
+                                <option value="3">Dell</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="priceRange">Price Range:</label>
+                            <input type="range" class="form-range" id="priceRange">
+                        </div>
+                        <!-- Add more filtering options or fields as needed -->
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product section on the right side -->
+        <div class="col-lg-8">
+            {% if results %}
+                <h2>Search Results for "{{ search_term }}"</h2>
+                <div class="row">
+                    {% for row in results %}
+                        <div class="col-lg-12 mb-4">
+                            <div class="card">
+                               <div class="row g-0">
+                            <div class="col-md-4 d-flex align-items-center">
+                                <!-- Product image with alt text -->
+                                <img class="card-img-top" src="{{ row.photo_url }}" alt="product Image" style="margin-top: 10px;" />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <!-- Product details -->
+                                    <h5 class="card-title">{{ row.productname }}</h5>
+                                    <!-- Product reviews -->
+                                    <p class="card-text">Price: {{ row.price }} $</p>
+                                    <!-- Buttons with reduced width -->
+                                    <div class="d-flex justify-content-between">
+                                        <a href="{{row.laptops_href}}" target="_blank" style="width: 40%;" class="btn btn-primary">View Product</a>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

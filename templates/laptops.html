@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!-- loading animation code if needed then uncomment -->
+ <!-- <div id="loading-overlay">
+    <div class="spinner-container">
+      <div class="spinner">
+        <div class="spinner">
+          <div class="spinner">
+            <div class="spinner">
+              <div class="spinner">
+                <div class="spinner"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+<style>
+   
+    /* Add a hover effect to the card */
+    .card:hover {
+        
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Remove border and box-shadow by default */
+    .card {
+        background-color: white;
+        border: none;
+        box-shadow: none;
+        transition: transform 0.3s ease;
+    }
+
+    /* Add a hover effect to the card */
+    .card:hover {
+        transform: translateY(-5px);
+/*        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);*/
+    }
+    .btn{
+        background-color: black;
+
+    }
+    .btn:hover {
+  border: none;
+  animation-name: tada;
+  animation-duration: 1s;
+  background-color: #C7C8CC;
+}
+</style>
+
+<div id="filter"></div>
+
+    <!-- Filter Options -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Filter Options</h5>
+                    <form>
+    
+                        <button class="btn btn-dark" type="submit" hx-get="/filter" name="f" value="hp" hx-target="#filter" hx-trigger="click" onclick="toggleDataVisibility()">HP</button>
+                        <button class="btn btn-dark" type="submit" hx-get="/filter" name="f" value="Samsung" hx-target="#filter" hx-trigger="click" onclick="toggleDataVisibility()">Samsung</button>
+                        <button class="btn btn-dark" type="submit" hx-get="/filter" name="f" value="Lenovo" hx-target="#filter" hx-trigger="click" onclick="toggleDataVisibility()">Lenovo</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Existing cards on the right side -->
+<div class="col-lg-8" id="product-list">
+    {% for row in amazon_laptops  %}
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <!-- Product image with alt text -->
+                        <img class="card-img-top" src="{{ row[6] }}" alt="Laptop Image" style="margin-top: 10px;" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <!-- Product details -->
+                            <h5 class="card-title">{{ row[2] }}</h5>
+                            <!-- Product reviews -->
+                            <p class="card-text">Price: {{ row[3]}} $</p>
+                            <!-- Buttons with reduced width -->
+                            <div class="d-flex justify-content-between">
+                                <a href="{{url_for('item_show', product_id=row[0], product_name=row[2],product_price=row[3],product_photo=row[6])}}" target="_blank" style="width: 40%;" class="btn btn-dark">View Product</a>
+                                <a href="{{ url_for('product_comparison', product_id=row[0], product_name=row[2]) }}" style="width: 40%;" class="btn btn-dark ">Compare Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% for row in daraz_laptops %}
+    <div class="row mb-4" id="product-list1">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <!-- Product image with alt text -->
+                        <img class="card-img-top" src="{{ row[4] }}" alt="Laptop Image" style="margin-top: 10px;" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <!-- Product details -->
+                            <h5 name='productname' class="card-title">{{ row[2] }}</h5>
+                            <!-- Product reviews -->
+                            <p class="card-text">Price: {{ row[3]}} </p>
+                            <!-- Buttons with reduced width -->
+                            <div class="d-flex justify-content-between">
+                                <a href="{{ url_for('item_show', product_id=row[0], product_name=row[2],product_price=row[3],product_photo=row[1]) }}" target="_blank" style="width: 40%;" class="btn btn-dark">View Product</a>
+                                <a href="{{ url_for('product_comparison', product_id=row[0], product_show=row[1], product_name=row[2]) }}" style="width: 40%;" class="btn btn-dark">Compare Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% for row in aliexpress_laptops %}
+    <div class="row mb-4" id="product-list2">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="row g-0">
+                    <div class="col-md-4 d-flex align-items-center">
+                        <!-- Product image with alt text -->
+                        <img class="card-img-top" src="{{ row[4] }}" alt="Laptop Image" style="margin-top: 10px;" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <!-- Product details -->
+                            <h5 name='productname' class="card-title">{{ row[2] }}</h5>
+                            <!-- Product reviews -->
+                            <p class="card-text">Price: {{ row[3]}} </p>
+                            <p>{{row[4]}}</p>
+                            <!-- Buttons with reduced width -->
+                            <div class="d-flex justify-content-between">
+                                <a href="{{url_for('item_show')}}" target="_blank" style="width: 40%;" class="btn btn-dark">View Product</a>
+                                <a href="{{ url_for('product_comparison', product_id=row[0], product_show=row[1], product_name=row[2]) }}" style="width: 40%;" class="btn btn-dark">Compare Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+
+<!-- Add pagination links -->
+<div class="pagination">
+    {% if page > 1 %}
+       <button  type="button" class="btn btn-dark"> <a href="{{ url_for('display_data', page=page-1) }}" style="color: white;">Previous</a></button>
+    {% endif %}
+    <span>page {{page}} of {{total_pages}}</span>
+
+    {% if page < total_pages %}
+       <button  type="button" class="btn btn-dark"> <a href="{{ url_for('display_data', page=page+1) }}" style="color: white;">Next</a></button>
+    {% endif %}
+</div>
+<br>
+
+</div>
+
+{% endblock %}
+    </div>
+</div>

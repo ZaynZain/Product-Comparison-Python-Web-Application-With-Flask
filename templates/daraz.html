@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <style>
+        .card {
+            display: flex;
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+        }
+        .card img {
+            max-width: 100px; /* Adjust the size as needed */
+            margin-right: 10px;
+        }
+        .card-details {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data from Database</h1>
+    {% for row in data %}
+        <div class="card">
+            <img src="{{ row[4] }}" alt="Product Image">
+            <div class="card-details">
+                <h2>{{ row[1] }}</h2>
+                <p><strong>ID:</strong> {{ row[0] }}</p>
+                <p><strong>Price:</strong> {{ row[2] }}</p>
+                <p><strong>Description:</strong> {{ row[3] }}</p>
+                <p><strong>Rating:</strong> {{ row[5] }}</p>
+                <!-- Add more details as needed -->
+                <button onclick="viewProduct('{{ row[0] }}')">View Product</button>
+                <button onclick="detailProduct('{{ row[0] }}')">Detail Product</button>
+            </div>
+        </div>
+    {% endfor %}
+
+    <script>
+        function viewProduct(productId) {
+            // Implement view product logic, e.g., redirect to a product page
+            alert("View Product: " + productId);
+        }
+
+        function detailProduct(productId) {
+            // Implement detail product logic, e.g., show detailed information
+            alert("Detail Product: " + productId);
+        }
+    </script>
+</body>
+</html>

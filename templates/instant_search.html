@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Search</title>
+<script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Instant Search</h1>
+    <form id="search-form"  hx-swap="innerHTML">
+        <input type="text" id="search-input" name="query" hx-get="/search" hx-trigger="Keyup changed delay:500ms"  hx-target="#search-results" >
+        <button type="submit">Search</button>
+    </form>
+    <div id="search-results">
+        {%for result in results %}
+        <ul>
+            <li>{{result}}</li>
+        </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

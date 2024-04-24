@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <link href="{{ url_for ('static', filename='css/loading.css')}}" rel="stylesheet"/>
+    <!-- Bootstrap animate-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="{{ url_for ('static', filename='js/loading.js ')}}"></script>
+    <title>Shop Homepage</title>
+</head>
+<style>
+    .container {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .input-group {
+        max-width:900px;
+    }
+    .table{
+        display: flex;
+    }
+    td>img {
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+    }
+
+    .group {
+        display: flex;
+        line-height: 28px;
+        align-items: center;
+        position: relative;
+        max-width: 390px;
+    }
+</style>
+<body>
+<h1 class="display-5 my-5 text-center">Comparison Time 😉</h1>
+
+<div class="container">
+    <form method="post">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="compare_product" placeholder="Search for Comparison" name="compare_product" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Compare</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <!-- First Table -->
+    <div class="col-6 col-md-6 col-sm-6">
+        <table class="table">
+            <tr>
+                <th>Product Image</th>
+                <td>
+                    <img src="{{ product.discount }}" id="img1" alt=" ">
+                </td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td id="price1"><p>{{ product.price }}</p></td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td id="desc1"><p>{{ product.productname }}</p></td>
+            </tr>
+            <tr>
+                <th>Rating</th>
+                <td id="brand1">{{ product.photo_url }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-6 col-md-6 col-sm-6" >
+        {% if compare_product_data %}
+            <table class="table">
+                <tr>
+                    <th>Product Image</th>
+                    <td>
+                        <img src="{{ compare_product_data.photo_url }}" id="img2" alt=" ">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td id="price2">{{ compare_product_data.price }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td id="desc2">{{ compare_product_data.productname }}</td>
+                </tr>
+                <tr>
+                    <th>Product Brand</th>
+                    <td id="brand2">N/A</td>
+                </tr>
+            </table>
+        {% else %}
+            <!-- Placeholder data -->
+            <table class="table">
+                <tr>
+                    <th>Product Image</th>
+                    <td>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlHq5jDte0E6yw9NaiKTMdrhUPDpZ0A9PgVA&usqp=CAU">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td id="price">Placeholder Price</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td id="desc">Placeholder Product Name</td>
+                </tr>
+                <tr>
+                    <th>Product Brand</th>
+                    <td id="brand">N/A</td>
+                </tr>
+            </table>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js "></script>
+</body>
+</html>
