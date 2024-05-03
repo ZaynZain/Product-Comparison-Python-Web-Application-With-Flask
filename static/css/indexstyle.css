@@ -1,4 +1,4 @@
- <style type="text/css">
+
  body{
     
     margin-top:0px;
@@ -27,7 +27,10 @@
     }
 p{
     font-family: monospace;
-}    
+} 
+h1{
+    font-family: fantasy;
+}
 .card {
     position: relative;
     display: flex;
@@ -46,40 +49,8 @@ p{
     min-height: 1px;
     padding: 1.25rem;
 }
-.search-bar {
-    position: absolute;
-    top: 250px; /* Adjust the top position as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    padding: 0px;
-   
 
-}
 
-.search-bar form {
-    display: flex;
-    align-items: center;
-}
-
-.search-bar input[type="text"] {
-    border: none;
-    outline: none;
-    padding: 8px;
-    margin-right: 5px;
-	height: 50px;
-	width: 500px;
-}
-
-.search-bar button {
-    background-color:black;
-    color: #fff;
-    border: none;
-	height: 50px;
-    padding: 8px 15px;
-    border-radius: 50px;
-    cursor: pointer;
-}
 /* CSS */
 .custom-card{
     border: none;
@@ -89,9 +60,93 @@ p{
     border: none;
 }
 .btn:hover {
-  animation-name: tada;
-  animation-duration: 1s;
+
 }
+ .main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  .child-div {
+    width: 23%; /* Adjust as needed */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .child-div img {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+  }
+  .child-div p {
+    color: black;
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  .child-div button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+.child-div button:hover{
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #f7941d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+  /* Media queries for responsiveness */
+  @media screen and (max-width: 768px) {
+    .child-div {
+      width: 90%;
+    }
+  }
+
+  .custom-section {
+      height: 500px;
+      background-color: orange;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .custom-section h1,h4,p{
+        color: white;
+    }
+    .banner-container button{
+    padding: 12px 35px;
+    border-radius:0px;
+      background: white;
+      border: none;
+      font-size: 17px;
+/*      font-weight:700;*/
+      color: black;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      align-items: center;
+}   
+.banner-container button:hover{
+    padding: 12px 35px;
+    border-radius:0px;
+      border: 1px solid white;
+      font-size: 17px;
+/*      font-weight:700;*/
+      color: white;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      align-items: center;
+}   
+
+    /*.custom-section h1{
+        color: white;
+    }*/
+
  /*.category {
     background-color:yellow;
     border: 1px solid #ccc;
@@ -117,5 +172,3 @@ p{
 #category {
 background: linear-gradient(180deg, rgba(0, 128, 128, 0) 0%, rgba(0, 134, 134, 0.5) 70%, rgba(255, 156, 156, 0.5) 60%, rgba(255, 156, 92, 0) 100%);
 }
-
-</style>

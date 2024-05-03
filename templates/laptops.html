@@ -41,11 +41,11 @@
         transform: translateY(-5px);
 /*        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);*/
     }
-    .btn{
+    .btn1{
         background-color: black;
 
     }
-    .btn:hover {
+    .btn1:hover {
   border: none;
   animation-name: tada;
   animation-duration: 1s;
@@ -111,6 +111,7 @@
                         <!-- Product image with alt text -->
                         <img class="card-img-top" src="{{ row[4] }}" alt="Laptop Image" style="margin-top: 10px;" />
                     </div>
+
                     <div class="col-md-8">
                         <div class="card-body">
                             <!-- Product details -->
@@ -119,7 +120,7 @@
                             <p class="card-text">Price: {{ row[3]}} </p>
                             <!-- Buttons with reduced width -->
                             <div class="d-flex justify-content-between">
-                                <a href="{{ url_for('item_show', product_id=row[0], product_name=row[2],product_price=row[3],product_photo=row[1]) }}" target="_blank" style="width: 40%;" class="btn btn-dark">View Product</a>
+                                <a href="{{ url_for('item_show', product_id=row[0], product_name=row[2],product_price=row[3],product_photo=row[4], product_show=row[1]) }}" target="_blank" style="width: 40%;" class="btn btn-dark">View Product</a>
                                 <a href="{{ url_for('product_comparison', product_id=row[0], product_show=row[1], product_name=row[2]) }}" style="width: 40%;" class="btn btn-dark">Compare Product</a>
                             </div>
                         </div>
@@ -137,7 +138,8 @@
                 <div class="row g-0">
                     <div class="col-md-4 d-flex align-items-center">
                         <!-- Product image with alt text -->
-                        <img class="card-img-top" src="{{ row[4] }}" alt="Laptop Image" style="margin-top: 10px;" />
+
+                        <img class="card-img-top" src="{{ row[4] }}"  alt="Laptop Image" style="margin-top: 10px;" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -145,10 +147,13 @@
                             <h5 name='productname' class="card-title">{{ row[2] }}</h5>
                             <!-- Product reviews -->
                             <p class="card-text">Price: {{ row[3]}} </p>
-                            <p>{{row[4]}}</p>
+                            
                             <!-- Buttons with reduced width -->
                             <div class="d-flex justify-content-between">
-                                <a href="{{url_for('item_show')}}" target="_blank" style="width: 40%;" class="btn btn-dark">View Product</a>
+                                <a href="{{url_for('item_show', product_id=row[0], product_show=row[1], product_name=row[2], product_price=row[3],product_photo=row[4])}}" target="_blank" style="width: 40%;" class="btn btn-dark">View Product</a>
+
+
+
                                 <a href="{{ url_for('product_comparison', product_id=row[0], product_show=row[1], product_name=row[2]) }}" style="width: 40%;" class="btn btn-dark">Compare Product</a>
                             </div>
                         </div>

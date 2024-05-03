@@ -31,13 +31,20 @@
 
     </head>
     <body class="m-0 p-0" >
+<!--top bar start -->
+
+
+
+
 
    <!-- Navigation-->
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
+        <div class="logo-div">
         <a class="navbar-brand" href="{{url_for('index')}}">
             <img src="static\images\logo.png" alt="Logo" height="100" width="200" class="d-inline-block align-top">
         </a>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,8 +54,21 @@
                 <!-- Your other navbar items -->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
+                        <!-- Catergories -->
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <!-- Catergories -->
+                    </a>
+                </li>
+
+                <li>
+                    <div class="Catergories-div">
+                      <a class="nav-link" href="#">
                         Catergories
                     </a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
@@ -128,14 +148,17 @@
 
 
 
+ 
+
+
     <div>
         <div class="search">
             <div class="col-sm-8 offset-sm-2">
                 <form method="post" action="/search">
                     <div class="input-group">
-                        <input type="text" name="search_term" class="form-control rounded-pill" placeholder="Search products...." id="search_term" required>
-                            <div class="input-group-append">&nbsp 
-                                <button type="submit" class="btn  bg-dark rounded-pill" name="Search"><font color="white">Search</font></button>
+                        <input type="text" name="search_term" class="form-control " placeholder="Search products...." id="search_term" required>
+                            <div class="input-group-append">
+                                <button type="submit"  class="btn-search btn" name="Search"><font color="white">Search</font></button>
                             </div>
                     </div>
                 </form>
@@ -144,14 +167,14 @@
 
 <p>
     
-        <h1 class="h1" >THE DIGITAL JOURNEY BY ZAIN CONTINUITY PLATFORM</h1>
-        <p class="p">What if you could shape the customer journey to fit each and every shopper? Make any distraction magically disappear along.</p>
+        <h1 class="h1"data-aos="zoom-in" data-aos-duration="2000" >Your Ultimate Destination for Seamless Product Comparison!</h1>
+        <p class="p" data-aos="zoom-in" data-aos-duration="2000">Intellicompare is your one-stop destination for effortless and informed decision-making.</p>
         
 </p>
     </div>
     <div>
         <a href="">
-        <button class="header-container-button"> Shop Now
+        <button class="header-container-button"> SHOP NOW!
          <div class="star-1">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -330,6 +353,7 @@
                 <p class="m-0 text-white">Copyright &copy;intellicompare 2020-2024</p>
             </div>
         </div>
+    </div>
     </div>
 </footer>
 
