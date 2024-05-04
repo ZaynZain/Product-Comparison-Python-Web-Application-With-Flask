@@ -8,8 +8,13 @@
         <title>{% block title %}intellicompare{% endblock %}</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+        <!--swiper javascript carouse -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
         <!-- HTMX LINK-->
-            <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/
+            SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+        
 
 
         <!-- Bootstrap animate-->
@@ -93,33 +98,37 @@
                         <i class="bi bi-bell"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">
-                        Register
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if 'email' in session %}
-                        {{ session['email'] }}
-                        {% else %}
-                        <img src="{% if 'email' in session %} static\images\logo.png  {% else %} static\images\profile.png {% endif %}"
-                            alt="Profile Picture" height="30" class="rounded-circle">
-                        {% endif %}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-                        {% if 'email' in session %}
-                        <li><a class="dropdown-item" href="{{url_for('profile')}}">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
-                        {% else %}
-                        <li><a class="dropdown-item" href="{{ url_for('login') }}">Login</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('registration') }}">Register</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" role="button"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        {% if 'email' in session %}
+            {% set email_parts = session['email'].split('@') %}
+            {% set username = email_parts[0] %}
+            {% set name_parts = username.split('.') %}
+            {% if name_parts|length > 1 %}
+                {% set name = name_parts[0]|capitalize ~ ' ' ~ name_parts[1]|capitalize %}
+            {% else %}
+                {% set name = username|capitalize %}
+            {% endif %}
+            {{ name }}
+        {% else %}
+            <img src="{% if 'email' in session %} static\images\logo.png {% else %} static\images\profile.png {% endif %}"
+                alt="Profile Picture" height="30" class="rounded-circle">
+        {% endif %}
+    </a> <!-- Close the 'a' tag here -->
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
+        {% if 'email' in session %}
+        <li><a class="dropdown-item" href="{{url_for('profile')}}">Profile</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+        <li><a class="dropdown-item" href="{{ url_for('login') }}">Login</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('registration') }}">Register</a></li>
+        {% endif %}
+    </ul>
+</li>
+
             </ul>
         </div>
     </div>
@@ -144,7 +153,7 @@
 
 <br>
 {% block header %}
-<div class="header-container">
+<div class="header-container" style="background-image: url('static/images/ban.png');">
 
 
 
@@ -167,7 +176,7 @@
 
 <p>
     
-        <h1 class="h1"data-aos="zoom-in" data-aos-duration="2000" >Your Ultimate Destination for Seamless Product Comparison!</h1>
+        <h1 class="h1"data-aos="zoom-in" data-aos-duration="2000" >Your Ultimate Destination for Product Comparison!</h1>
         <p class="p" data-aos="zoom-in" data-aos-duration="2000">Intellicompare is your one-stop destination for effortless and informed decision-making.</p>
         
 </p>
@@ -359,6 +368,9 @@
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Include Swiper JS -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
         <!-- Core theme JS-->
         <script src=" {{ url_for ('static', filename='js/scripts.js ')}}"></script>
         <script src=" {{ url_for ('static', filename='js/loading.js ')}}"></script>
